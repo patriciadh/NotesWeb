@@ -1,2 +1,3 @@
-# NOTES Web
-AUTHOR: Patricia Díez Herguido
+# notesWeb
+DSW Lab
+Patricia Díez Herguido

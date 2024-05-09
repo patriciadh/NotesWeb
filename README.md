@@ -1,3 +1,3 @@
-# NotesWeb
+# notesWeb
 DSW Lab
 Patricia Díez Herguido
