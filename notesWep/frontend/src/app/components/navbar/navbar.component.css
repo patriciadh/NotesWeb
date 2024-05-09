@@ -1,0 +1,116 @@
+.navbar {
+    background-color: rgb(160, 94, 78);
+    padding: 5px 16px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 0 4px rgba(0,0,0,.1);
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.navbar img {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+}
+
+.navbar .navbar-brand {
+    color: #fff;
+    padding-left: 0;
+    padding-right: 50px;
+    font-size: 24px;
+}
+
+.navbar .navbar-brand:hover, .navbar .navbar-brand:focus {
+    color: #ffffff8a;
+}
+
+.navbar .navbar-brand i {
+    font-size: 25px;
+    margin-right: 5px;
+}
+
+.navbar .nav-item i {
+    font-size: 18px;
+}
+
+.navbar .nav-item span {
+    position: relative;
+    top: 3px;
+}
+
+.navbar .navbar-nav {
+    width: 100%;
+    justify-content: space-around;
+}
+
+.navbar .navbar-nav > a {
+    color: #fff;
+    padding: 8px 15px;
+    font-size: 14px;
+}
+
+.navbar .navbar-nav > a:hover, .navbar .navbar-nav > a:focus {
+    color: #b39f93;
+    text-shadow: 0 0 4px rgba(37, 21, 15, 0.479);
+}
+
+.navbar .navbar-nav > a > i {
+    display: block;
+    text-align: center;
+}
+
+.navbar .navbar-toggle {
+    border-color: #fff;
+}
+
+.navbar .navbar-toggle .icon-bar {
+    background: #fff;
+}
+
+.navbar .navbar-toggle:focus, .navbar .navbar-toggle:hover {
+    background: transparent;
+}
+
+.navbar .divider {
+    background-color: #fff !important;
+}
+
+@media (min-width: 1200px){
+    .form-inline .input-group {
+        width: 350px;
+        margin-left: 30px;
+    }
+}
+
+@media (max-width: 1199px){
+    .navbar .navbar-nav > a > i {
+        display: inline-block;
+        text-align: left;
+        min-width: 30px;
+        position: relative;
+        top: 4px;
+    }
+    .navbar .navbar-collapse {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+    }
+    .navbar .navbar-form {
+        border: none;
+        display: block;
+        margin: 10px 0;
+        padding: 0;
+    }
+    .navbar .navbar-nav {
+        margin: 8px 0;
+    }
+    .navbar .navbar-toggle {
+        margin-right: 0;
+    }
+    .input-group {
+        width: 100%;
+    }
+}

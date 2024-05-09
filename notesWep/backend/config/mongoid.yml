@@ -1,0 +1,7 @@
+development:
+  clients:
+    default:
+      #uri: mongodb://localhost:27017/notes_app
+      uri: mongodb+srv://patriciadh00p:amOXyn30ENL21Nhf@cluster0.phgkh2w.mongodb.net/notesApp?retryWrites=true&w=majority
+      options:
+        server_selection_timeout: 5

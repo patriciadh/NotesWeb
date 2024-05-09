@@ -1,0 +1,31 @@
+<body>
+  <div class="title-container px-4 py-5">
+    <h2 style="text-align: center;">My friendships</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="container">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>User type</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of friends"  >
+          <td *ngIf="user.email != email">{{user.name}}</td>
+          <td *ngIf="user.email != email">{{user.surname}}</td>
+          <td *ngIf="user.email != email" >{{user.email}}</td>
+          <td *ngIf="user.email != email">{{user.userType}}</td>
+          <td>
+            <button class="btn btn-share btn-sm" *ngIf="user.email != email" (click)="shareNote(variable, user._id)">
+              Share your note<i class="fa fa-share-alt fa-lg" style="margin-left: 5px;"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>

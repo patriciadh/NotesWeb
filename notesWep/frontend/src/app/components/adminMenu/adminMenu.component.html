@@ -1,0 +1,37 @@
+
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin options</title>
+  <link rel="stylesheet" href="adminMenu.component.css">
+</head>
+
+<body>
+  <app-navbar></app-navbar>
+  <div class="title-container px-4 py-5">
+    <h2 style="text-align: center;">Users management</h2>
+    <div class="divider"></div>
+    <label class="py-4" style="font-size: 23px;">What do you want to do?</label>
+  </div>
+  <div class="container" style="margin: auto;">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="container">
+            <ul style="display: flex;">
+              <li><a href="../users" data-text="Users">Users</a></li>
+              <li><a href="../adminNotes" data-text="Notes">Notes</a></li>
+              <li><a href="../adminCollection" data-text="Collections">Collections</a></li>
+              <li><a href="../usersList" data-text="usersList">Friendships</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<body>
+    <app-navbar></app-navbar>
+    <div class="container px-4 py-2">
+        <div class="header-container" style="width: 100%; display: flex; align-items: center; justify-content: center; margin-left: 10px;">
+            <h2 style="text-align: center; margin-top: 30px; margin-left: 430px;">User profile</h2>
+            <div class="button-container" style="margin-left: 300px;">
+                <button type="button" class="btn custom-btn-delete" style="width: 160px; margin-top: 30px;" (click)="deleteUser()">
+                    Delete account<i class="fa fa-trash-o" style="margin-left: 10px;"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="divider" style="margin-bottom: -40px;"></div>
+    <div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title text-center">Your information</h5>
+                    </div>
+                    <div class="card-body">
+                        <form class="row g-3" [formGroup]="info_form">
+                            <div class="col-md-12">
+                                <label for="name" class="form-label">Name:</label>
+                                <div style="position: relative;">
+                                    <input type="text" [value]="user.name" class="form-control" id="name" placeholder="Enter your name" formControlName="name">
+                                    <i class="fa fa-edit" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="surname" class="form-label">Surname:</label>
+                                <div style="position: relative;">
+                                    <input type="text" [value]="user.surname" class="form-control" id="surname" placeholder="Enter your surname" formControlName="surname">
+                                    <i class="fa fa-edit" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="email" class="form-label">Email: </label>
+                                <br>
+                                <span>{{ user.email }}</span>
+                            </div>
+                            <div class="btn-container">
+                                <button type="button" class="btn custom-btn-update" (click)="updateUser()">
+                                    <i class="fa fa-check"></i> Update
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title text-center">Change your password</h5>
+                    </div>
+                    <div class="card-body">
+                        <form class="row g-3" [formGroup]="password_form">
+                            <div class="col-md-12">
+                                <label for="actualPassword" class="form-label">Your password: </label>
+                                <br>
+                                <span>{{ user.password }}</span>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="password" class="form-label">New password:</label>
+                                <input type="password" class="form-control" id="password" placeholder="Enter your new password" formControlName="password">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="passwordConfirm" class="form-label">Confirm password:</label>
+                                <input type="password" class="form-control" id="passwordConfirm" placeholder="Confirm your new password" formControlName="passwordConfirm">
+                            </div>
+                            <div class="btn-container">
+                                <button type="button" class="btn custom-btn-change" (click)="resetPassword()">
+                                    <i class="fa fa-refresh"></i> Change
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

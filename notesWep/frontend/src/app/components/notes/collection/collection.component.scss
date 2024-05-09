@@ -1,0 +1,198 @@
+.main-container {
+    margin: 30px auto 30px auto;
+    max-width: 950px;
+    width: 100%;
+    position: relative;
+    font-family: 'Trebuchet MS', sans-serif;
+  
+    .note-main {
+      border-radius: 10px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  
+      .note-container {
+        background-position-x: right;
+        background-position-y: bottom;
+        background-size: cover;
+  
+        .note-name {
+          padding: 10px 0px 0px 0px;
+          font-family: 'Trebuchet MS', sans-serif;
+          text-align: center;
+          font-size: 22px;
+  
+        }
+  
+        .note-label {
+          padding: 5px 0px 0px 20px;
+          font-family: 'Trebuchet MS', sans-serif;
+  
+        }
+  
+        .note-title {
+          padding: 5px 5px 5px 10px;
+          font-family: 'Trebuchet MS', sans-serif;
+          word-wrap: break-word;
+  
+          &:focus-visible {
+            outline: 0;
+          }
+        }
+  
+        .note-content {
+          padding: 5px 5px 5px 10px;
+          font-family: 'Trebuchet MS', sans-serif;
+          word-wrap: break-word;
+  
+          &:focus-visible {
+            outline: 0;
+          }
+        }
+  
+      }
+    }
+  
+  }
+  
+  .note-title input {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+  }
+  
+  .note-content input {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+  }
+  
+  .notes-container {
+    margin: 20px auto 20px auto;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+  
+    .note-main {
+      border-radius: 10px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+      cursor: pointer;
+      color: contrast(var(--bg-color), white, black);
+      margin-left: 30px;
+  
+      &:hover {
+        transform: scale(1.1);
+        position: relative;
+        z-index: 999;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+      }
+  
+      .note-container {
+        background-position-x: right;
+        background-position-y: bottom;
+        background-size: cover;
+  
+        .note-name {
+          padding: 10px 0px 0px 0px;
+          font-family: 'Trebuchet MS', sans-serif;
+          text-align: center;
+  
+        }
+  
+        .note-label {
+          padding: 5px 0px 0px 20px;
+          font-family: 'Trebuchet MS', sans-serif;
+  
+        }
+  
+        .note-title {
+          padding: 5px 5px 5px 10px;
+          font-family: 'Trebuchet MS', sans-serif;
+          word-wrap: break-word;
+  
+          &:focus-visible {
+            outline: 0;
+          }
+        }
+  
+        .note-content {
+          padding: 5px 5px 5px 10px;
+          font-family: 'Trebuchet MS', sans-serif;
+          word-wrap: break-word;
+  
+          &:focus-visible {
+            outline: 0;
+          }
+        }
+  
+      }
+    }
+  
+  }
+  
+  .divider {
+    height: 3px;
+    background-color: rgb(100, 71, 51);
+  }
+  
+  .dropdown-item-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .dropdown-item-text span {
+    margin-right: 10px; 
+  }
+  
+  .dropdown-item-text i {
+    margin-left: 10px; 
+  }
+  
+  .dropdown-item-text {
+    font-weight: bold;
+  }
+  
+  .modal-dialog {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: calc(100% - 3.5rem) !important;
+  }
+  
+  .modal-content {
+    width: 90% !important;
+    max-width: 40rem !important;
+  }
+  
+  .row{
+    margin-right: 5px;
+  }
+
+.note-title textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-top: 5px;
+  resize: vertical;
+  transition: box-shadow 0.3s ease;
+}
+
+.note-title textarea::placeholder {
+  color: #999;
+}
+
+.note-title textarea:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+.note-title textarea:focus {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}

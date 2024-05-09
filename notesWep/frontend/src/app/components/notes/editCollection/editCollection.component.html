@@ -1,0 +1,188 @@
+<body>
+    <div class="container px-4 py-5">
+        <div class="container px-4 py-2">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: center;">
+                <h2 style="text-align: center; margin-right: 10px; width: 100%; border-radius: 10px;" [ngStyle]="{ 'color': getColourContrast(note_collection.bgColor) }" [style.background-color]="note_collection.bgColor">Collection</h2>
+                <div class="palette-container"  [style.background-color]="note_collection.bgColor">
+                    <div class="palette-icon">
+                        <div class="image bi bi-palette-fill" style="margin-right: 6px; margin-top: 2px;" [ngStyle]="{ 'color': getColourContrast(note_collection.bgColor) }" [(colorPicker)]="note_collection.bgColor"
+                            (colorPickerChange)="changeColourCollection(note_collection, $event)"
+                            [cpAlphaChannel]="'disabled'" [cpOutputFormat]="'hex'"
+                            [cpPresetColors]="color_list" [cpSaveClickOutside]="true"
+                            [cpDisableInput]="true" [cpPosition]="'left'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="input-container" style="margin-top: 30px;">
+            <input type="text" [(ngModel)]="note_collection.name">
+            <div style="margin-top: 5px;" class="image bi bi-check-circle-fill fa-lg check-icon" (click)="editCollection()"></div>
+        </div>
+    </div>
+
+    <div class="container px-4 py-3">
+        <h2 style="text-align: center;">Create a new note in '{{note_collection.name}}'</h2>
+        <div class="divider"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="main-container">
+                            <div #notesMain class="note-main"
+                                [ngStyle]="{ 'background-color': note.bgColor, 'color': getColourContrast(note.bgColor) }">
+                                <div #noteContainer class="note-container">
+                                    <b>
+                                        <div class="note-name">New note</div>
+                                    </b>
+                                    <div class="form-group">
+                                        <i>
+                                            <b>
+                                                <div class="note-label" style="font-size: 18px;">Title:</div>
+                                            </b>
+                                        </i>
+                                        <div #noteTitle class="note-title">
+                                            <textarea contenteditable="true" spellcheck="false" placeholder="Enter the title"
+                                                [(ngModel)]="note.title"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <i>
+                                            <b>
+                                                <div class="note-label" style="font-size: 18px;">Content:</div>
+                                            </b>
+                                        </i>
+                                        <div #noteContent class="note-content">
+                                            <textarea contenteditable="true" spellcheck="false"
+                                                placeholder="Enter the content"
+                                                [(ngModel)]="note.content"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="icons-container">
+                                    <div class="icons">
+                                        <div name="bgColor" class="image bi bi-palette-fill" [(colorPicker)]="note.bgColor"
+                                            (colorPickerChange)="changeColour($event)" [cpAlphaChannel]="'disabled'"
+                                            [cpOutputFormat]="'hex'" [cpPresetColors]="color_list"
+                                            [cpSaveClickOutside]="true" [cpDisableInput]="true" [cpPosition]="'right'">
+                                        </div>
+                                        <div class="image bi bi-image" (click)="openModalImage(note, true)"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-lg-4">
+                                            <span class="bi bi-plus-circle-fill fa-lg" type="button"
+                                                (click)="saveNote()"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container px-4 py-5">
+        <h2 style="text-align: center;">All your notes in '{{note_collection.name}}'</h2>
+        <div class="divider"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="notes-container" *ngFor="let note of note_list">
+                            <div #notesMain class="note-main"
+                                [ngStyle]="{ 'background-color': note.bgColor, 'color': getColourContrast(note.bgColor) }">
+                                <div #noteContainer class="note-container">
+                                    <b>
+                                        <div class="note-name" style="font-size: 20px;">{{getUserNameById(note?.user['$oid'])}}
+                                        </div>
+                                    </b>
+                                    <div class="form-group">
+                                        <div class="note-name" style="font-size: 20px;">{{formatDate(note.created_at)}}
+                                        </div>
+                                        <i>
+                                            <b>
+                                                <div class="note-label" style="font-size: 18px;">Title:</div>
+                                            </b>
+                                        </i>
+                                        <div #noteTitle class="note-title" contenteditable="false" spellcheck="false" style="margin-left: 15px;">
+                                            {{note.title}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <i>
+                                            <b>
+                                                <div class="note-label" style="font-size: 18px;">Content:</div>
+                                            </b>
+                                        </i>
+                                        <div #noteContent class="note-content" contenteditable="false" spellcheck="false" style="margin-left: 15px;">
+                                            {{note.content}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="icons-container">
+                                    <div class="row">
+                                        <div class="col-md-6 col-lg-4">
+                                            <div dropdown>
+                                                <span dropdownToggle type="button" class="bi bi-gear-fill"
+                                                    id="dropdownMenuSettings" data-bs-toggle="dropdown"
+                                                    aria-expanded="false"></span>
+                                                <ul class="dropdown-menu dropdown-menu-end" style="width: 200px;"
+                                                    aria-labelledby="dropdownMenuSettings"
+                                                    [ngStyle]="{ 'background-color': note.bgColor }">
+
+                                                    <li>
+                                                        <a class="dropdown-item edit"
+                                                            [ngStyle]="{ 'color': getColourContrast(note.bgColor), 'background-color': hovered_item === 'edit' ? getColourContrast(getColourContrast(note.bgColor)) : 'transparent' }"
+                                                            (mouseenter)="hovered_item = 'edit'"
+                                                            (mouseleave)="hovered_item = ''" type="button"
+                                                            (click)="editNote(note)">
+                                                            <div class="dropdown-item-text"
+                                                                [ngStyle]="{ 'color': getColourContrast(note.bgColor) }">
+                                                                <i class="bi bi-pencil-fill"></i>
+                                                                <span>Edit</span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item delete"
+                                                            [ngStyle]="{ 'color': getColourContrast(note.bgColor), 'background-color': hovered_item === 'delete' ? getColourContrast(getColourContrast(note.bgColor)) : 'transparent' }"
+                                                            (mouseenter)="hovered_item = 'delete'"
+                                                            (mouseleave)="hovered_item = ''" type="button"
+                                                            (click)="deleteNote(note)">
+                                                            <div class="dropdown-item-text"
+                                                                [ngStyle]="{ 'color': getColourContrast(note.bgColor) }">
+                                                                <i class="bi bi-trash-fill"></i>
+                                                                <span>Delete</span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item share"
+                                                            [ngStyle]="{ 'color': getColourContrast(note.bgColor), 'background-color': hovered_item === 'share' ? getColourContrast(getColourContrast(note.bgColor)) : 'transparent' }"
+                                                            (mouseenter)="hovered_item = 'share'"
+                                                            (mouseleave)="hovered_item = ''" type="button"
+                                                            (click)="shareNote(note, user)">
+                                                            <div class="dropdown-item-text"
+                                                                [ngStyle]="{ 'color': getColourContrast(note.bgColor) }">
+                                                                <i class="bi bi-share-fill"></i>
+                                                                <span>Share</span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

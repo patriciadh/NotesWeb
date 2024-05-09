@@ -1,0 +1,32 @@
+<body>
+    <div class="card-body p-md-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 container-styles">
+                <p class="text-center h1 fw-bold mb-3 mx-1 mx-md-4">Log in</p>
+                <hr class="my-4">
+                <form class="mx-1 mx-md-4" [formGroup]="form" (ngSubmit)="check()">
+                    <label for="email"><b>Email:</b></label>
+                    <div class="d-flex flex-row align-items-center mb-4" [ngClass]="{'has-error': (form.get('email').invalid || (form.get('email').errors && form.get('email').errors['valid']) || form.get('email').errors?.['taken']) && (form.get('email').touched || submitted)}">
+                        <div class="form-outline flex-fill mb-0">
+                            <input type="email" class="form-control" placeholder="Enter your email" formControlName="email" />
+                        </div>
+                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    </div>
+                    <label for="password"><b>Password:</b></label>
+                    <div class="d-flex flex-row align-items-center mb-4" [ngClass]="{'has-error': (form.get('password').invalid || (form.get('password').errors && form.get('password').errors['valid'])) && (form.get('password').touched || submitted)}">
+                        <div class="form-outline flex-fill mb-0">
+                            <input type="password" class="form-control" placeholder="Enter your password" formControlName="password" />
+                        </div>
+                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                    </div>
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                        <button type="submit" class="btn btn-primary btn-lg mt-3">Log in</button>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <label>If you don't have an account <a href="/user/signup">sign up here.</a></label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

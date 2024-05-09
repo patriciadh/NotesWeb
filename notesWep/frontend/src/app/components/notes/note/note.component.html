@@ -1,0 +1,60 @@
+<div class="container px-4 py-5">
+    <h2 style="text-align: center;">Edit your note</h2>
+    <div class="divider"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="main-container">
+                        <div #notesMain class="note-main"
+                            [ngStyle]="{ 'background-color': note.bgColor, 'color': getColourContrast(note.bgColor) }">
+                            <div #noteContainer class="note-container">
+                                <b>
+                                    <div class="note-name">Note</div>
+                                </b>
+                                    <div class="form-group">
+                                        <i>
+                                            <b>
+                                                <div class="note-label" style="font-size: 18px;">Title:</div>
+                                            </b>
+                                        </i>
+                                        <div #noteTitle class="note-title">
+                                            <textarea contenteditable="true" spellcheck="false" placeholder="Enter Note title"
+                                            [(ngModel)]="note.title"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <i>
+                                            <b>
+                                                <div class="note-label" style="font-size: 18px;">Content:</div>
+                                            </b>
+                                        </i>
+                                        <div #noteContent class="note-content">
+                                            <textarea contenteditable="true" spellcheck="false" placeholder="Enter Note content"
+                                            [(ngModel)]="note.content"></textarea>
+                                        </div>
+                                    </div>
+                            </div>
+
+                            <div class="icons-container">
+                                <div class="icons">
+                                    <div name="bgColor" class="image bi bi-palette-fill" [(colorPicker)]="note.bgColor"
+                                        (colorPickerChange)="changeColour($event)"
+                                        [cpAlphaChannel]="'disabled'" [cpOutputFormat]="'hex'"
+                                        [cpPresetColors]="colorList" [cpSaveClickOutside]="true" [cpDisableInput]="true"
+                                        [cpPosition]="'right'">
+                                    </div>
+                                    <div class="image bi bi-image" (click)="openModalImage(note, true)"></div>
+                                </div>
+                                <div class="row">
+                                        <div class="fa fa-check-circle fa-lg" style="margin-right: 10px; margin-top: 3px;" type="button" (click)="editNote()"></div>
+                                        <div class="bi bi-x-circle-fill fa-lg" type="button" (click)="goBack()"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+@import "./assets/scss/icons.scss";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+html {
+  height: 100%;
+}
+  
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-image: url('https://images.template.net/111803/free-boho-banner-background-2j1js.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  overflow-y: auto;
+  background-attachment: fixed;
+}

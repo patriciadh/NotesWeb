@@ -1,0 +1,33 @@
+<body>
+  <app-navbar></app-navbar>
+  <div class="title-container px-4 py-5">
+    <h2 style="text-align: center;">My friendships</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="container">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Email</th>
+          <th>User type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of friends"  >
+          <td *ngIf="user.email != email">{{user.name}}</td>
+          <td *ngIf="user.email != email">{{user.surname}}</td>
+          <td *ngIf="user.email != email" >{{user.email}}</td>
+          <td *ngIf="user.email != email">{{user.userType}}</td>
+        </tr>
+        <tr *ngFor="let user of friends2">
+          <td *ngIf="user.email != email">{{user.name}}</td>
+          <td *ngIf="user.email != email">{{user.surname}}</td>
+          <td *ngIf="user.email != email">{{user.email}}</td>
+          <td *ngIf="user.email != email">{{user.userType}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>

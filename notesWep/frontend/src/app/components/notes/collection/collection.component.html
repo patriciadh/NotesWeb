@@ -1,0 +1,151 @@
+<div class="container px-4 py-5">
+    <h2 style="text-align: center;">Create a new collection</h2>
+    <div class="divider"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="main-container">
+                        <div #notesMain class="note-main"
+                            [ngStyle]="{ 'background-color': note_collection.bgColor, 'color': getColourContrast(note_collection.bgColor) }">
+                            <div #noteContainer class="note-container">
+                                <div #noteContainer class="note-container">
+                                    <b>
+                                        <div class="note-name">New collection</div>
+                                    </b>
+                                    <div class="form-group">
+                                        <i>
+                                            <b>
+                                                <div class="note-label" style="font-size: 18px;">Name:</div>
+                                            </b>
+                                        </i>
+                                        <div #noteTitle class="note-title">
+                                                <textarea spellcheck="false" placeholder="Enter the collection name" 
+                                                [(ngModel)]="note_collection.name"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="icons-container">
+                                    <div class="icons">
+                                        <div class="image bi bi-palette-fill" [(colorPicker)]="note_collection.bgColor"
+                                            (colorPickerChange)="changeColour(note_collection, $event)"
+                                            [cpAlphaChannel]="'disabled'" [cpOutputFormat]="'hex'"
+                                            [cpPresetColors]="color_list" [cpSaveClickOutside]="true"
+                                            [cpDisableInput]="true" [cpPosition]="'right'"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-lg-4">
+                                            <span class="bi bi-plus-circle-fill fa-lg" type="button"
+                                                (click)="saveCollection()"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- List of Notes -->
+    <div class="container px-4 py-5">
+        <h2  style="text-align: center;">All my collections</h2>
+        <div class="divider"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="notes-container" *ngFor="let note_collection_element of note_collection_list">
+                            <div #notesMain class="note-main"
+                                [ngStyle]="{ 'background-color': note_collection_element.bgColor, 'color': getColourContrast(note_collection_element.bgColor) }">
+                                <div #noteContainer class="note-container">
+                                    <i>
+                                        <b>
+                                            <div class="note-name" style="font-size: 20px;">{{getUserNameById(note_collection_element?.userId)}}
+                                            </div>
+                                        </b>
+                                    </i>
+                                    <div class="form-group">
+                                        
+                                        <div class="note-name">{{formatDate(note_collection_element.created_at)}}</div>
+                                        <b>
+                                            <div class="note-label" style="font-size: 18px;">Name:</div>
+                                        </b>
+                                        <div #noteTitle class="note-title" contenteditable="false" spellcheck="false" style="margin-left: 15px;">
+                                            {{note_collection_element.name}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <i>
+                                            <b>
+                                                <div class="note-label" style="font-size: 18px;">Number of notes:</div>
+                                            </b>
+                                        </i>
+                                        <div #noteContent class="note-content" contenteditable="false" style="margin-left: 15px;"
+                                            spellcheck="false">
+                                            {{notesCollection(note_collection_element.notes)}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="icons-container">
+                                    <div class="icons">
+                                        <div class="image"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-lg-4">
+                                            <div dropdown>
+                                                <span style="margin-left: 390px" dropdownToggle type="button" class="bi bi-gear-fill"
+                                                    id="dropdownMenuSettings" data-bs-toggle="dropdown"
+                                                    aria-expanded="false"></span>
+                                                <ul class="dropdown-menu dropdown-menu-end"
+                                                    aria-labelledby="dropdownMenuSettings" style="width: 200px;"
+                                                    [ngStyle]="{ 'background-color': note_collection_element.bgColor }">
+                                                    
+                                                    <li>
+                                                        <a class="dropdown-item delete"
+                                                            (mouseenter)="hovered_item = 'delete'"
+                                                            (mouseleave)="hovered_item = ''" type="button"
+                                                            (click)="deleteCollection(note_collection_element)">
+                                                            <div class="dropdown-item-text">
+                                                                <i class="bi bi-trash-fill"></i>
+                                                                <span>Delete</span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item edit"
+                                                            [ngStyle]="{ 'color': getColourContrast(note_collection_element.bgColor), 'background-color': hovered_item === 'edit' ? getColourContrast(getColourContrast(note_collection_element.bgColor)) : 'transparent' }"
+                                                            (mouseenter)="hovered_item = 'edit'"
+                                                            (mouseleave)="hovered_item = ''" type="button" (click)="editCollection(note_collection_element)">
+                                                            <div class="dropdown-item-text"
+                                                                [ngStyle]="{ 'color': getColourContrast(note_collection_element.bgColor) }">
+                                                                <i class="bi bi-pencil-fill"></i>
+                                                                <span>Edit</span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item share"
+                                                            (mouseenter)="hovered_item = 'share'"
+                                                            (mouseleave)="hovered_item = ''" type="button"
+                                                            (click)="goToFriendships(note_collection_element)">
+                                                            <div class="dropdown-item-text">
+                                                                <i class="bi bi-share-fill"></i>
+                                                                <span>Share</span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

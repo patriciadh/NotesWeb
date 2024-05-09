@@ -1,0 +1,39 @@
+.icons-container {
+  // Flex container for icons
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 20px;
+
+  // Modifier class for minimizing the container
+  &.min {
+    justify-content: center;
+    // Styles for icons when container is minimized
+    .icons>div {
+      margin: 0 2px;
+    }
+  }
+
+  // Style for icon with image
+  .image {
+    cursor: pointer;
+    @extend %icon;
+  }
+
+  .icons {
+    // Flex container for individual icons
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+
+    // Placeholder for common icon styles
+    %icon {
+      width: 34px;
+      height: 34px;
+      position: relative;
+      background-size: 18px 18px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+}

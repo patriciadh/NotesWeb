@@ -1,0 +1,36 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">{{note.title}}</h4>
+        <div *ngIf="editable === false">
+            <p class="note-created">{{formatDate(note.created_at)}}</p>
+        </div>
+    </div>
+    <div class="modal-body">
+        <img [src]="note.imageURL" style="max-width:100%;cursor:pointer" class="modal-hover-opacity" />
+        <img style="max-width:100%;cursor:pointer" class="modal-hover-opacity" />
+
+        <div *ngIf="editable === false">
+
+        </div>
+        <div *ngIf="editable === true">
+            <div class="basic-container">
+                <mat-form-field class="file-upload-field" floatPlaceholder="never">
+                    <input [hidden]="true" (change)="onFileSelect($event)" type="file" accept="all/*" #fileSelect
+                        accept="image/*">
+                    <input readonly matInput [(ngModel)]="filename" placeholder="Select an image file" />
+                    <button *ngIf="this.note.imageURL != ''"
+                        (click)="this.base64File = null; this.filename = null; this.note.imageURL = ''" matSuffix
+                        type="button" color="warn" mat-icon-button>
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <button matSuffix mat-icon-button (click)="fileSelect.click();" mat-icon-button>
+                        <mat-icon>file_upload</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-done" (click)="bsModalRef.hide()">Done!</button>
+    </div>
+</div>

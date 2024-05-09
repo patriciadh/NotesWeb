@@ -1,0 +1,71 @@
+<body>
+    <app-navbar></app-navbar>
+    <div class="title-container px-4 py-5">
+        <h2 style="text-align: center;">Users management</h2>
+        <div class="divider"></div>
+    </div>
+    <div class="container px-4 py-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="users-container" *ngFor="let user of user_list">
+                            <div #usersMain class="user-main">
+                            <div #userContainer class="user-container" (click)="showUserProfile(user)">
+                                    <b>
+                                        <div class="card-title" style="font-size: 20px;">User info</div>
+                                    </b>
+                                    <div class="form-group">
+                                        <i>
+                                                <div class="user-label" style="font-size: 18px;"><b>Name:</b>
+                                                <span #userName class="user-name" contenteditable="false" spellcheck="false">
+                                                    {{user.name}}</span>
+                                                </div>
+                                        </i>
+                                    </div>
+                                    <div class="form-group">
+                                        <i>
+                                            <div class="user-label" style="font-size: 18px;"><b>Surname:</b>
+                                                <span #userSurname class="user-surname" contenteditable="false" spellcheck="false">
+                                                    {{user.surname}}
+                                                </span>
+                                            </div>
+                                        </i>
+                                    </div>
+                                    <div class="form-group">
+                                        <i>
+                                            <div class="user-label" style="font-size: 18px;"><b>Email:</b>
+                                            <span #userEmail class="user-email" contenteditable="false" spellcheck="false">
+                                                {{user.email}}</span>
+                                            </div>
+                                        </i>
+                                    </div>
+                                    <div class="form-group">
+                                        <i>
+                                            <div class="user-label" style="font-size: 18px;"><b>Type:</b>
+                                                <span #userType class="user-usertype" contenteditable="false" spellcheck="false">
+                                                    {{user.userType}}
+                                                </span>
+                                            </div>
+                                        </i>
+                                    </div>
+                                </div>
+                                <div class="btn-container">
+                                    <i>
+                                        <span>Change user type to:</span>
+                                        <button type="button" class="btn custom-btn-promote" (click)="makeAdmin(user)">
+                                            Admin <i class="fa fa-user-plus fa-lg"></i>
+                                        </button>
+                                        <button type="button"  class="btn custom-btn-demote" (click)="makeUser(user)">
+                                            User <i class="fa fa-user fa-lg"></i>
+                                        </button>
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
