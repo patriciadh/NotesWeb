@@ -30,6 +30,7 @@ export class FriendListComponent {
   friendships:Friendship[]=[];
   variable:ObjectID;
   email:String;
+  friendsAux:User[]=[];
 
   constructor(
     private route: ActivatedRoute,
@@ -46,7 +47,7 @@ export class FriendListComponent {
     this.email=this.user.email
     const note_id = this.route.snapshot.paramMap.get('id');
     this.getNote(note_id)
-    this.getFriendships(this.variable)
+    this.getAllFriendShips(this.variable)
     this.user = {
       userType: "USER",
       name: '',
@@ -95,21 +96,34 @@ export class FriendListComponent {
   }
 
   // Retrieves friendships for the current user
-  getFriendships(userId:ObjectID){
+  getAllFriendShips(userId:ObjectID){
     this.friendshipService.getAll(userId).subscribe((data: Friendship[]) => {
       this.friendships = data;
       console.log(this.variable)
-      this.getFriends(this.friendships)
+      this.getAllFriends(this.friendships)
+      this.getAllFriendsAux(this.friendships)
     });
   }
 
-  // Retrieves friend details for each friendship
-  getFriends(friendships:Friendship[]){
-    if(friendships.length > 0){
-      for(let i=0;i<friendships.length;i++){
-        this.userService.get(this.friendships[i].friendId['$oid']).subscribe((data) => {
+  getAllFriends(friendShips:Friendship[]){
+    if(friendShips.length > 0){
+      for(let i=0;i<friendShips.length;i++){
+        this.userService.get(this.friendships[i].userId['$oid']).subscribe((data) => {
           this.friends[i]=data
-          console.log(this.friends)
+        })
+      }
+    }
+  }
+
+  getAllFriendsAux(friendShips:Friendship[]){
+    if(friendShips.length > 0){
+      for(let i=0;i<friendShips.length;i++){
+
+        this.userService.get(this.friendships[i].friendId['$oid']).subscribe((data) => {
+
+          this.friendsAux[i]=data
+          console.log(this.friendsAux)
+
         })
       }
     }

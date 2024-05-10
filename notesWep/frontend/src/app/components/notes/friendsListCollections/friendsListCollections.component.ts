@@ -34,6 +34,7 @@ export class FriendListCollectionsComponent {
   note_list: Note[];
   friends:User[]=[];
   friendships:Friendship[]=[];
+  friendsAux:User[]=[];
 
   constructor(
     private route: ActivatedRoute,
@@ -99,23 +100,37 @@ export class FriendListCollectionsComponent {
     });
   }
 
-  // Retrieves friendships for the current user
   getFriendships(userId:ObjectID){
     this.friendshipService.getAll(userId).subscribe((data: Friendship[]) => {
       this.friendships = data;
       console.log(this.variable)
-      this.getFriends(this.friendships)
+      this.getAllFriends(this.friendships)
+      this.getAllFriendsAux(this.friendships)
     });
+
   }
 
-  // Retrieves friend details for each friendship
-  getFriends(friendships:Friendship[]){
-    if(friendships.length > 0){
-      for(let i=0;i<friendships.length;i++){
-        this.userService.get(this.friendships[i].friendId['$oid']).subscribe((data) => {
+  getAllFriends(friendShips:Friendship[]){
+    if(friendShips.length > 0){
+      for(let i=0;i<friendShips.length;i++){
+        this.userService.get(this.friendships[i].userId['$oid']).subscribe((data) => {
           this.friends[i]=data
         })
       }
     }
+    }
+
+  getAllFriendsAux(friendShips:Friendship[]){
+  if(friendShips.length > 0){
+    for(let i=0;i<friendShips.length;i++){
+
+      this.userService.get(this.friendships[i].friendId['$oid']).subscribe((data) => {
+
+        this.friendsAux[i]=data
+        console.log(this.friendsAux)
+
+      })
+    }
+  }
   }
 }
