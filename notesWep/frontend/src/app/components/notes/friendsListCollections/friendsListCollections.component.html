@@ -25,6 +25,16 @@
                   Share your collection<i class="fa fa-share-alt fa-lg" style="margin-left: 5px;"></i></button>
             </td>
         </tr>
+        <tr *ngFor="let user of friendsAux">
+          <td *ngIf="user.email != email">{{user.email}}</td>
+          <td *ngIf="user.email != email">{{user.name}}</td>
+          <td *ngIf="user.email != email">{{user.surname}}</td>
+          <td *ngIf="user.email != email">{{user.userType}}</td>
+          <td>
+            <button class="btn btn-share btn-sm" *ngIf="user.email != email" (click)="shareCollection(variable, user._id)">
+              Share your collection<i class="fa fa-share-alt fa-lg" style="margin-left: 5px;"></i></button>
+        </td>
+        </tr>
       </tbody>
     </table>
   </div>

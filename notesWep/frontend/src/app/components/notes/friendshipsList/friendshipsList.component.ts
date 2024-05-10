@@ -110,6 +110,7 @@ export class FriendListComponent {
       for(let i=0;i<friendShips.length;i++){
         this.userService.get(this.friendships[i].userId['$oid']).subscribe((data) => {
           this.friends[i]=data
+          console.log(this.friends)
         })
       }
     }
